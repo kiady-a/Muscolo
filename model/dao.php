@@ -41,3 +41,23 @@ function verifieSiEmailExiste($emailUser){
     $requete = $request->fetch();
     return $requete[0] != 0;
 }
+function createActionSugg($nom, $id){
+	$db=myPdo();
+	$request = $db->prepare("INSERT INTO actionssug(nomAction, idUtilisateur)
+							 VALUES (:nom,:id);");
+	$request->execute(array('nom'=>$nom, 'id'=>$id));
+	return $request;
+}
+function createGroup($nom, $id){
+	$db = myPdo();
+	$request = $db->prepare("INSERT INTO actionssug(nom, idUtilisateur)
+							 VALUES (:nom,:id);");
+	$request->execute(array('nom'=>$nom, 'id'=>$id));
+	return $request;
+}
+function updateUser($email, $admin, $banni, $id){
+	$db=myPdo();
+	$request = $db->prepare("UPDATE utilisateurs SET email = :email, admin = :admin, banni = :banni where idUtilisateur = :id;");
+	$request->execute(array('email'=>$email, 'admin'=>$admin, 'banni'=>$banni, 'id'=>$id));
+	return $request;
+}
