@@ -19,38 +19,7 @@
         </style></noscript>
         <div class="container">
           <?php include 'views/nav.php'; ?>
-            <nav class="navbar navbar-default" style="background-color: #00358F; border: none;">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href="index.php" class="navbar-brand logo" style="color: white;">M</a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse" style="color: white;">
-                        <ul class="nav navbar-nav">
-                            <li><a href="index.php" style="color : white; text-align:center;" onmouseover="this.style.color = 'white'; this.style.background = '#ffa400';" onmouseout="this.style.color = 'white'; this.style.background = 'none'">Home</a></li>
-                            <li><a href=""></a></li>
-                            <li><a href=""></a></li>
-                            <?php //if ($_SESSION[""]) { ?>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="" style="color : white; text-align:center;" onmouseover="this.style.color = 'white'; this.style.background = '#ffa400';" onmouseout="this.style.color = 'white'; this.style.background = 'none'">My account</a></li>
-                                <li><a href="" style="color : white; text-align:center;" onmouseover="this.style.color = 'white'; this.style.background = '#ffa400';" onmouseout="this.style.color = 'white'; this.style.background = 'none'">Logout</a></li>
-                            </ul>
-                        <?php //} else { ?>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a data-toggle="pill" href="#create" style="color : white; text-align:center;" onmouseover="this.style.color = 'white'; this.style.background = '#ffa400';" onmouseout="this.style.color = 'white'; this.style.background = 'none'">Create Account</a></li>
-                                <li><a data-toggle="pill" href="#login" style="color : white; text-align:center;" onmouseover="this.style.color = 'white'; this.style.background = '#ffa400';" onmouseout="this.style.color = 'white'; this.style.background = 'none'">Login</a></li>
-                            </ul>
-                        <?php //} ?>
-                    </div>
-                </div>
-            </nav>
+
             <div class="col-md-12 col-xs-12" style="background-color: #00358F; color: #fefcfb; padding:10px;">
                 <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px;">
                     <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; border: solid 1px; min-height: 400px; text-align: center;">
