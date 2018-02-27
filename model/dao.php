@@ -15,6 +15,14 @@ function getUser(){
 
     return $requete;
 }
+
+function getUserByEmail($email){
+	$db = myPdo();
+    $requete = $db->prepare("select * from utilisateurs where email=:email");
+    $requete->execute(array('email'=>$email));
+    return $requete;
+}
+
 function getGroup(){
 	$db = myPdo();
     $requete = $db->prepare("select * from groupe");
@@ -60,4 +68,8 @@ function updateUser($email, $admin, $banni, $id){
 	$request = $db->prepare("UPDATE utilisateurs SET email = :email, admin = :admin, banni = :banni where idUtilisateur = :id;");
 	$request->execute(array('email'=>$email, 'admin'=>$admin, 'banni'=>$banni, 'id'=>$id));
 	return $request;
+}
+function login($email, $password){
+	$users=getUserByEmail($email)->fetch();
+	return (sha256($password) == $users['password'])
 }
