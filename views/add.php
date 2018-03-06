@@ -20,20 +20,11 @@
          <div class="col-md-6 col-md-offset-3">
            <form class="form-signin">
                <fieldset>
-                 <legend>Please sign in</legend>
+                 <legend>Add a new action</legend>
                <div class="form-group">
-                   <label for="inputEmail" class="sr-only">Email address</label>
-                   <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-               </div>
-               <div class="form-group">
-                   <label for="inputPassword" class="sr-only">Password</label>
-                   <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-               </div>
-               <!--<?php if(register) ?>-->
-               <div class="form-group">
-                   <label for="inputPassword" class="sr-only">Repeat password</label>
-                   <input type="password" id="inputPassword" class="form-control" placeholder="Repeat password" required="">
-               </div>
+                  <label for="action" class="sr-only">Action</label>
+                  <textarea class="form-control" rows="5" id="action" placeholder="Action" style="resize:none;"></textarea>
+              </div>
                <hr />
                <input id="submit" name="submit" type="submit" class="btn btn-default" value="Sign in" style="background-color: #00358F; border: none; color:#f8f8f8; font-size: 30px;">
                </fieldset>
