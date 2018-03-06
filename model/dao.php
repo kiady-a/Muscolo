@@ -65,7 +65,7 @@ function createActionSugg($nom, $id){
 }
 function createGroup($nom, $id){
 	$db = myPdo();
-	$request = $db->prepare("INSERT INTO actionssug(nom, idUtilisateur)
+	$request = $db->prepare("INSERT INTO groupe(nom, idUtilisateur)
 							 VALUES (:nom,:id);");
 	$request->execute(array('nom'=>$nom, 'id'=>$id));
 	return $request;
