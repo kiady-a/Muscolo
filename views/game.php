@@ -11,7 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./assets/css/shifumi.css" >
     </head>
-    <body class='container col-md-12 col-xs-12' style="background-color: #001333;">
+    <body class='container col-md-12 col-xs-12' style="background-color: #ffa400;">
         <noscript><p>Please enable javascript for this site to work properly</p><style>
             div {
                 display: none;
@@ -20,14 +20,14 @@
         <div class="container">
           <?php include 'views/nav.php'; ?>
 
-            <div class="col-md-12 col-xs-12" style="background-color: #00358F; color: #fefcfb; padding:10px;">
-                <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px;">
-                    <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; border: solid 1px; min-height: 400px; text-align: center;">
+            <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
+                <div class="col-md-12 col-xs-12" style="padding:10px;">
+                    <div class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
                       <p>ici les choses à faire</p>
                     </div>
                 </div>
                 <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
-                    <input id="submit" name="next" type="submit" class="btn btn-primary" value="Suivant !" style="background-color: #ffa400; border: none; width:200px; height: 50px; font-size: 30px;">
+                    <input id="submit" name="next" type="submit" class="btn btn-primary" value="Suivant !" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;">
                 </div>
             </div>
         </div>

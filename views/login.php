@@ -13,15 +13,14 @@
    <link rel="stylesheet" type="text/css" href="./assets/css/shifumi.css">
 </head>
 
-<body>
+<body class='container col-md-12 col-xs-12' style="background-color: #ffa400;">
    <div class="container">
        <?php include 'views/nav.php'; ?>
-       <div class="col-md-6 col-md-offset-3">
-
+       <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
+         <div class="col-md-6 col-md-offset-3">
            <form class="form-signin">
                <fieldset>
                  <legend>Please sign in</legend>
-
                <div class="form-group">
                    <label for="inputEmail" class="sr-only">Email address</label>
                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
@@ -30,11 +29,16 @@
                    <label for="inputPassword" class="sr-only">Password</label>
                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
                </div>
+               <!--<?php if(register) ?>-->
+               <div class="form-group">
+                   <label for="inputPassword" class="sr-only">Repeat password</label>
+                   <input type="password" id="inputPassword" class="form-control" placeholder="Repeat password" required="">
+               </div>
                <hr />
-               <button class="btn btn-lg btn-block" type="submit" style="color:#fefefe;background-color:#ffa400">Sign in</button>
+               <input id="submit" name="submit" type="submit" class="btn btn-default" value="Sign in" style="background-color: #00358F; border: none; color:#f8f8f8; font-size: 30px;">
                </fieldset>
            </form>
-
+</div>
        </div>
    </div>
 </body>
