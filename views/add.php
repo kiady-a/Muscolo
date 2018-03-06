@@ -23,10 +23,10 @@
                  <legend>Add a new action</legend>
                <div class="form-group">
                   <label for="action" class="sr-only">Action</label>
-                  <textarea class="form-control" rows="5" id="action" placeholder="Action" style="resize:none;"></textarea>
+                  <textarea class="form-control" rows="5" id="action" placeholder="Describe the new action (Write 'NAME' when you want an action for someone)" style="resize:none;"></textarea>
               </div>
                <hr />
-               <input id="submit" name="submit" type="submit" class="btn btn-default" value="Sign in" style="background-color: #00358F; border: none; color:#f8f8f8; font-size: 30px;">
+               <input id="submit" name="submit" type="submit" class="btn btn-default" value="Add action" style="background-color: #00358F; border: none; color:#f8f8f8; font-size: 30px;">
                </fieldset>
            </form>
 </div>

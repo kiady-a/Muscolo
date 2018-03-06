@@ -4,44 +4,56 @@
         <title>Muscolo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./Bootstrap/css/bootstrap.min.css" >
         <link rel="icon" href="" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./assets/css/shifumi.css" >
         <script type="text/javascript">
-        const START_NB = 4;
-        var nb = START_NB-1;
+            const START_NB = 4;
+            var nbPerson = START_NB;
+            var names = [];
 
-        function AddPerson(load=false){
-          nb++;
-          var output = "<input type=\"number\" hidden value=\""+nb+"\"/>";
-          var closeDiv = false;
-          var id="";
-          for (var i = 0; i < nb; i++) {
-            if(closeDiv){
-              output+="</div>";
+            function refreshPersons(load = false) {
+                var output = "<input type=\"number\" hidden value=\"" + nbPerson + "\"/>";
+                var closeDiv = false;
+                var id = "";
+                for (var i = 0; i < nbPerson; i++) {
+                    if (closeDiv) {
+                        output += "</div>";
+                    } else {
+                        closeDiv = true;
+                    }
+                    id = "person" + i;
+                    var input = document.getElementById(id);
+                    var name = (input != null ? input.value : "");
+                    output += "<div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + name + "\"/>";
+                }
+                output += "<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
+                document.getElementById('form').innerHTML = output;
+                if (!load) {
+                    document.getElementById(id).focus();
+                    console.log("Load :" + load + ":" + id);
             }
-            else{
-              closeDiv=true;
             }
-            id = "person"+i;
-            var input = document.getElementById(id);
-            var name = (input!=null?input.value:"");
-            output+="<div class=\"form-group\"><input type=\"text\" name=\"person"+i+"\" id=\"person"+i+"\" value=\""+name+"\"/>";
-          }
-          output+="<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
-          document.getElementById('form').innerHTML = output;
-          if (!load) {
-            document.getElementById(id).focus();
-            console.log("Load :"+load+":"+id);
-          }
-        }
-        function DeletePerson(){
-          nb--;
-          AddPerson();
-        }
+            function AddPerson(load = false) {
+                if (!load) {
+                    nbPerson++;
+                }
+                refreshPersons(load);
+            }
+            function DeletePerson() {
+                nbPerson--;
+                refreshPersons();
+            }
+            function LoadPersons() {
+                for (var i = 0; i < nbPerson; i++) {
+                    var id = "person" + i;
+                    var input = document.getElementById(id);
+                    var name = (input !== null ? input.value : "");
+                    names.push(name);
+                }
+                document.getElementById("main").innerHTML = console.log(names);
+            }
         </script>
     </head>
     <body class='container col-md-12 col-xs-12' style="background-color: #ffa400;">
@@ -51,21 +63,21 @@
             }
         </style></noscript>
         <div class="container">
-          <?php include 'views/nav.php'; ?>
+            <?php include 'views/nav.php'; ?>
 
             <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; height: 600px; overflow-y : scroll">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
-                    <div class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px;">
-                      <p>ici les choses à faire</p>
-                      <div id="form" class="col-md-4 col-md-offset-4">
-                      <input type="number" hidden value="0"/>
-                      <input type="text" name="person0" id="person0" >
-                      <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
-                    </div>
+                    <div id="main" class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px;">
+                        <p>ici les choses à faire</p>
+                        <div id="form" class="col-md-4 col-md-offset-4">
+                            <input type="number" hidden value="0"/>
+                            <input type="text" name="person0" id="person0" >
+                            <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
-                    <input id="submit" name="next" type="submit" class="btn btn-primary" value="Suivant !" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;">
+                    <input id="submit" name="next" onclick="LoadPersons()" class="btn btn-primary" value="Suivant !" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;">
                 </div>
             </div>
         </div>
