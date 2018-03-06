@@ -7,17 +7,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="index.php" class="navbar-brand logo" style="color: #009ffd;">M</a>
+            <a href="index.php" class="navbar-brand logo" style="color: #009ffd;">Muscolo</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" style="color: #009ffd;">
             <ul class="nav navbar-nav">
                 <li><a href="index.php" style="color : #009ffd; text-align:center;" onmouseover="this.style.color = '#f8f8f8'; this.style.background = '#009ffd';" onmouseout="this.style.color = '#009ffd'; this.style.background = 'none'">Home</a></li>
-                <li>
+                <!--<li>
                     <a href=""></a>
                 </li>
                 <li>
                     <a href=""></a>
-                </li>
+                </li> -->
                 <?php //if ($_SESSION[""]) {
 ?>
             </ul>

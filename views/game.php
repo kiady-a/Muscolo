@@ -38,6 +38,10 @@
             console.log("Load :"+load+":"+id);
           }
         }
+        function DeletePerson(){
+          nb--;
+          AddPerson();
+        }
         </script>
     </head>
     <body class='container col-md-12 col-xs-12' style="background-color: #ffa400;">
