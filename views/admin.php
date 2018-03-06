@@ -18,8 +18,7 @@
             }
         </style></noscript>
         <div class="container">
-          
-
+          <?php include 'views/nav.php'; ?>
             <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
                     <div class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
