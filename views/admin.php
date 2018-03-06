@@ -34,8 +34,8 @@
                 while ($donnees = $propositions->fetch()) {
                       ?>
                       <tr>
-                          <th><?php echo $donnees['nomAction'] ?>faire ca se serait trop cool</th>
-                          <td><?php echo $donnees['idUtilisateur'] ?>kiady</td>
+                          <th><?php echo $donnees['nomAction'] ?></th>
+                          <td><?php echo $donnees['email'] ?></td>
                           <td>
                             <button type="submit" class="btn btn-default" name="edit">
                                 <span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>

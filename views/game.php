@@ -14,10 +14,11 @@
         const START_NB = 4;
         var nb = START_NB-1;
 
-        function AddPerson(){
+        function AddPerson(load=false){
           nb++;
           var output = "<input type=\"number\" hidden value=\""+nb+"\"/>";
           var closeDiv = false;
+          var id="";
           for (var i = 0; i < nb; i++) {
             if(closeDiv){
               output+="</div>";
@@ -25,13 +26,17 @@
             else{
               closeDiv=true;
             }
-            var id = "person"+i;
+            id = "person"+i;
             var input = document.getElementById(id);
             var name = (input!=null?input.value:"");
             output+="<div class=\"form-group\"><input type=\"text\" name=\"person"+i+"\" id=\"person"+i+"\" value=\""+name+"\"/>";
           }
           output+="<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
           document.getElementById('form').innerHTML = output;
+          if (!load) {
+            document.getElementById(id).focus();
+            console.log("Load :"+load+":"+id);
+          }
         }
         </script>
     </head>
@@ -44,7 +49,7 @@
         <div class="container">
           <?php include 'views/nav.php'; ?>
 
-            <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
+            <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; height: 600px; overflow-y : scroll">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
                     <div class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px;">
                       <p>ici les choses à faire</p>
@@ -68,7 +73,7 @@
         <script src="Bootstrap/js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script type="text/javascript">AddPerson();</script>
+        <script type="text/javascript">AddPerson(true);</script>
     </body>
 
 </html>

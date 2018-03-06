@@ -10,7 +10,7 @@ function getAction(){
 }
 function getActionSugg(){
 	$db = myPdo();
-    $requete = $db->prepare("select * from actionssugg");
+    $requete = $db->prepare("select * from actionssugg a, utilisateurs u where a.idUtilisateur=u.idUtilisateur");
     $requete->execute();
 
     return $requete;
