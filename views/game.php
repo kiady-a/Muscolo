@@ -11,18 +11,26 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./assets/css/shifumi.css" >
         <script type="text/javascript">
-        var nb = 4;
+        const START_NB = 4;
+        var nb = START_NB-1;
 
         function AddPerson(){
           nb++;
           var output = "<input type=\"number\" hidden value=\""+nb+"\"/>";
+          var closeDiv = false;
           for (var i = 0; i < nb; i++) {
+            if(closeDiv){
+              output+="</div>";
+            }
+            else{
+              closeDiv=true;
+            }
             var id = "person"+i;
             var input = document.getElementById(id);
             var name = (input!=null?input.value:"");
-            output+="<div class=\"form-group\"><input type=\"text\" name=\"person"+i+"\" id=\"person"+i+"\" value=\""+name+"\"/></div>";
+            output+="<div class=\"form-group\"><input type=\"text\" name=\"person"+i+"\" id=\"person"+i+"\" value=\""+name+"\"/>";
           }
-          output+="<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button>";
+          output+="<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
           document.getElementById('form').innerHTML = output;
         }
         </script>
@@ -38,11 +46,11 @@
 
             <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
-                    <div class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
+                    <div class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px;">
                       <p>ici les choses à faire</p>
-                      <div id="form">
+                      <div id="form" class="col-md-4 col-md-offset-4">
                       <input type="number" hidden value="0"/>
-                      <input type="text" name="person0" id="person0">
+                      <input type="text" name="person0" id="person0" >
                       <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
                     </div>
                     </div>

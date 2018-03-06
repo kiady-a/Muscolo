@@ -41,7 +41,8 @@
             <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
                   <legend>My Groups</legend>
-                    <div class="col-md-4 col-xs-4" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
+                  <a href="#" onmouseover="this.style.background='#ffa400';this.style.color='#ffa400';" onmouseout="this.style.background='';this.style.color='';">
+                    <div class="col-md-3 col-xs-3" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center; margin:40px;">
                       <table class="table table-dark">
                         <thead>
                           <tr>
@@ -61,7 +62,9 @@
                         </tbody>
                       </table>
                 </div>
-                <div class="col-md-4 col-xs-4" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
+              </a>
+              <a href="#" onmouseover="this.style.background='#ffa400';this.style.color='#ffa400';" onmouseout="this.style.background='';this.style.color='';">
+                <div class="col-md-3 col-xs-3" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center; margin:40px;">
                   <table class="table table-dark">
                     <thead>
                       <tr>
@@ -78,7 +81,9 @@
                     </tbody>
                   </table>
             </div>
-            <div class="col-md-4 col-xs-4" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
+          </a>
+          <a href="#" onmouseover="this.style.background='#ffa400';this.style.color='#ffa400';" onmouseout="this.style.background='';this.style.color='';">
+            <div class="col-md-3 col-xs-3" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center; margin:40px;">
               <table class="table table-dark">
                 <thead>
                   <tr>
@@ -98,7 +103,9 @@
                 </tbody>
               </table>
         </div>
-        <div class="col-md-4 col-xs-4" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
+      </a>
+          <a href="#" onmouseover="this.style.background='#ffa400';this.style.color='#ffa400';" onmouseout="this.style.background='';this.style.color='';">
+        <div class="col-md-3 col-xs-3" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center; margin:40px;">
           <table class="table table-dark">
             <thead>
               <tr>
@@ -120,9 +127,10 @@
               </tr>
             </tbody>
           </table>
-    </div>
-            </div>
         </div>
+      </a>
+      </div>
+    </div>
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
