@@ -14,7 +14,10 @@
         var nb = 1;
 
         function AddPerson(){
-
+          var output = "<input type=\"number\" hidden value=\""+nb+"\"/>";
+          for (var i = 0; i < nb; i++) {
+            array[i]
+          }
         }
         </script>
     </head>
