@@ -41,7 +41,7 @@
             <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
                   <legend>My Groups</legend>
-                    <div class="col-md-3 col-xs-3" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
+                    <div class="col-md-4 col-xs-4" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
                       <table class="table table-dark">
                         <thead>
                           <tr>
@@ -61,62 +61,62 @@
                         </tbody>
                       </table>
                 </div>
-                <div class="col-md-3 col-xs-3" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
+                <div class="col-md-4 col-xs-4" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
                   <table class="table table-dark">
                     <thead>
                       <tr>
-                        <th scope="col">DreamTeam</th>
+                        <th scope="col">Apple 4ever</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Christiano</td>
+                        <td>Constantin</td>
                       </tr>
                       <tr>
-                        <td>Simon</td>
-                      </tr>
-                      <tr>
-                        <td>Kiady</td>
+                        <td>Ottavio</td>
                       </tr>
                     </tbody>
                   </table>
             </div>
-            <div class="col-md-3 col-xs-3" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
+            <div class="col-md-4 col-xs-4" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
               <table class="table table-dark">
                 <thead>
                   <tr>
-                    <th scope="col">DreamTeam</th>
+                    <th scope="col">Kawaii</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
+                    <td>Billy</td>
+                  </tr>
+                  <tr>
+                    <td>Loic</td>
+                  </tr>
+                  <tr>
                     <td>Christiano</td>
-                  </tr>
-                  <tr>
-                    <td>Simon</td>
-                  </tr>
-                  <tr>
-                    <td>Kiady</td>
                   </tr>
                 </tbody>
               </table>
         </div>
-        <div class="col-md-3 col-xs-3" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
+        <div class="col-md-4 col-xs-4" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
           <table class="table table-dark">
             <thead>
               <tr>
-                <th scope="col">DreamTeam</th>
+                <th scope="col">420</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Christiano</td>
+                <td>Safia</td>
               </tr>
               <tr>
-                <td>Simon</td>
+                <td>Lucas</td>
               </tr>
               <tr>
-                <td>Kiady</td>
+                <td>Thibaut</td>
+              </tr>
+              <tr>
+                <td>Romain</td>
               </tr>
             </tbody>
           </table>

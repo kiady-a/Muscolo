@@ -1,7 +1,7 @@
 <?php
-/*require_once 'model/dao.php';
+require_once './model/dao.php';
 
-$propositions = getActionSugg();*/
+$propositions = getActionSugg();
 
-include 'views/admin.php';
+include './views/admin.php';
 ?>

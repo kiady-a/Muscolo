@@ -19,7 +19,6 @@
           for (var i = 0; i < nb; i++) {
             var id = "person"+i;
             var input = document.getElementById(id);
-            console.log(input);
             var name = (input!=null?input.value:"");
             output+="<div class=\"form-group\"><input type=\"text\" name=\"person"+i+"\" id=\"person"+i+"\" value=\""+name+"\"/></div>";
           }
