@@ -10,14 +10,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./assets/css/shifumi.css" >
-        <script>
-        var nb = 1;
+        <script type="text/javascript">
+        var nb = 4;
 
         function AddPerson(){
+          nb++;
           var output = "<input type=\"number\" hidden value=\""+nb+"\"/>";
           for (var i = 0; i < nb; i++) {
-            array[i]
+            var id = "person"+i;
+            var name = document.getElementById(id);
+            output+="<div class=\"form-group\"><input type=\"text\" name=\"person"+i+"\" id=\"person"+i+"\" value=\""+name+"\"/></div>";
           }
+          output+="<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button>";
+          document.getElementById('form').innerHTML = output;
         }
         </script>
     </head>
@@ -35,8 +40,8 @@
                     <div class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center;">
                       <p>ici les choses à faire</p>
                       <div id="form">
-                      <input type="number" hidden value="1"/>
-                      <input type="text" name="person1"/>
+                      <input type="number" hidden value="0"/>
+                      <input type="text" name="person1" id=person0/>
                       <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
                     </div>
                     </div>
@@ -54,6 +59,7 @@
         <script src="Bootstrap/js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script type="text/javascript">AddPerson();</script>
     </body>
 
 </html>
