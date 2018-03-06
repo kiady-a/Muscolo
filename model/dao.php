@@ -8,6 +8,13 @@ function getAction(){
 
     return $requete;
 }
+function getActionSugg(){
+	$db = myPdo();
+    $requete = $db->prepare("select * from actionssugg");
+    $requete->execute();
+
+    return $requete;
+}
 function getUser(){
 	$db = myPdo();
     $requete = $db->prepare("select * from utilisateurs");
@@ -71,5 +78,5 @@ function updateUser($email, $admin, $banni, $id){
 }
 function login($email, $password){
 	$users=getUserByEmail($email)->fetch();
-	return (sha256($password) == $users['password'])
+	return (sha256($password) == $users['password']);
 }
