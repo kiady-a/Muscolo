@@ -39,7 +39,8 @@
           }
         }
         function DeletePerson(){
-          nb--;
+          nb-=2;
+          console.log(nb);
           AddPerson();
         }
         </script>
