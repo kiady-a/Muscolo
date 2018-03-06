@@ -32,7 +32,17 @@
                   <th>Édition</th>
               </thead>
               <tbody>
-                  <?php
+                <tr>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                </tr>
+                  <?php/*
                   while ($donnees = $propositions->fetch()) {
                       ?>
                       <tr>
@@ -51,7 +61,7 @@
                       </tr>
                       <?php
                   }
-                  $users->closeCursor();
+                  $users->closeCursor();*/
                   ?>
               </tbody>
           </table>
