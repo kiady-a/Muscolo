@@ -18,7 +18,9 @@
           var output = "<input type=\"number\" hidden value=\""+nb+"\"/>";
           for (var i = 0; i < nb; i++) {
             var id = "person"+i;
-            var name = document.getElementById(id);
+            var input = document.getElementById(id);
+            console.log(input);
+            var name = (input!=null?input.value:"");
             output+="<div class=\"form-group\"><input type=\"text\" name=\"person"+i+"\" id=\"person"+i+"\" value=\""+name+"\"/></div>";
           }
           output+="<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button>";
@@ -41,7 +43,7 @@
                       <p>ici les choses à faire</p>
                       <div id="form">
                       <input type="number" hidden value="0"/>
-                      <input type="text" name="person1" id=person0/>
+                      <input type="text" name="person0" id="person0">
                       <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
                     </div>
                     </div>

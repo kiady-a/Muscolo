@@ -22,46 +22,35 @@
       </noscript>
         <div class="container">
           <?php include 'views/nav.php'; ?>
-            <div id="main" class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px; overflow-y: scroll">
+            <div id="main" class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; height: 600px; overflow-y: scroll">
               <table class='table table-bordered table-hover' >
                   <thead>
-                  <th>#</th>
-                  <th>Prenom</th>
-                  <th>Nom</th>
-                  <th>Pseudo</th>
+                  <th>Action</th>
+                  <th>Utilisateur</th>
                   <th>Édition</th>
               </thead>
               <tbody>
-                <tr>
-                </tr>
-                <tr>
-                </tr>
-                <tr>
-                </tr>
-                <tr>
-                </tr>
-                <tr>
-                </tr>
-                  <?php/*
-                  while ($donnees = $propositions->fetch()) {
+                  <?php
+                  $i = 20;
+                  $j=0;
+                while (/*$donnees = $propositions->fetch()*/ $j<=$i) {
                       ?>
                       <tr>
-                          <th><?php echo $donnees['nomAction'] ?></th>
-                          <td><?php echo $donnees['idUtilisateur'] ?></td>
+                          <th><?php //echo $donnees['nomAction'] ?>faire ca se serait trop cool</th>
+                          <td><?php //echo $donnees['idUtilisateur'] ?>kiady</td>
                           <td>
-                              <a href="edit">
-                                  <button type="submit" class="btn btn-default" name="edit">
-                                      <span style="color:#346EF2;" class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                  </button>
-                              </a>
-                              <button type="submit" class="btn btn-default" name="delete" data-toggle="modal" data-target="#myModal<?php echo $donnees['idUser'] ?>">
-                                  <span style="color:red;" class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                              </button>
+                            <button type="submit" class="btn btn-default" name="edit">
+                                <span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </button>
+                            <button type="submit" class="btn btn-default" name="delete" data-toggle="modal" data-target="#myModal<?php echo $donnees['idUser'] ?>">
+                                <span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
                           </td>
                       </tr>
                       <?php
+                      $j++;
                   }
-                  $users->closeCursor();*/
+                  //$users->closeCursor();
                   ?>
               </tbody>
           </table>
