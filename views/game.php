@@ -59,10 +59,10 @@
                     <div class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px;">
                       <p>ici les choses à faire</p>
                       <div id="form" class="col-md-4 col-md-offset-4">
-                      <input type="number" hidden value="0"/>
-                      <input type="text" name="person0" id="person0" >
-                      <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
-                    </div>
+                        <input type="number" hidden value="0"/>
+                        <input type="text" name="person0" id="person0" >
+                        <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
+                      </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
