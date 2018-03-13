@@ -12,8 +12,10 @@
             const START_NB = 3;
             var nbPerson = START_NB;
             var names = [];
+            var actions = [];
             var tmpNames = [];
             var loaded = false;
+            var game;
             //----------------
             function AddPerson() {
                 saveTmpNames();
@@ -25,10 +27,13 @@
                 RemoveName(id);
                 Display();
             }
-            function SaveNames(){
-                
+            function SaveNames() {
+                saveTmpNames();
+                // TODO Check assez de joueurs etc.
+                names = tmpNames;
+                game = new Game(names, actions);
             }
-                
+
             // Save
             function saveTmpNames() {
                 tmpNames = FillArrayWithNames();
@@ -98,7 +103,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
-                    <button id="btn" onclick="LoadPersons()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span class="glyphicon glyphicon-ok"></span></button
+                    <button id="btn" onclick="SaveNames()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span class="glyphicon glyphicon-ok"></span></button
                 </div>
             </div>
         </div>

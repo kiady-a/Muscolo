@@ -25,6 +25,7 @@ if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
 }
 elseif(filter_has_var(INPUT_POST, 'submit') && !isset($_GET['register'])){
   if(login($_POST['inputEmail'], $_POST['inputPassword'])){
+    // getUserByEmail($email) si banni afficher erreur        
     $_SESSION['log'] = true;
     $_SESSION['email'] = $_POST['inputEmail'];
     header('Location: index.php');
