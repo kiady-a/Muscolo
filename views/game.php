@@ -14,7 +14,7 @@
             var names = [];
             var tmpNames = [];
             var loaded = false;
-            // Méthodes d'accès
+            //----------------
             function AddPerson() {
                 saveTmpNames();
                 AddName();
@@ -25,11 +25,10 @@
                 RemoveName(id);
                 Display();
             }
-            function SaveNames() {
-                saveTmpNames();
-                // TODO Test si au moins 2 joueurs, sans nom, etc.
-                names = tmpNames;
+            function SaveNames(){
+                
             }
+                
             // Save
             function saveTmpNames() {
                 tmpNames = FillArrayWithNames();
@@ -51,7 +50,7 @@
                 tmpNames.splice(id, 1);
             }
 
-            // Afficher
+            // Display
             function Display(load = false) {
                 var output = "";
                 if (!load) {
@@ -64,16 +63,16 @@
                 document.getElementById('form').innerHTML = output;
             }
 
+            // Jeu
             class Game {
-                var names;
-                var actions;
                 constructor(names, actions) {
                     this.names = names;
                     this.actions = actions;
                 }
-                function RandomAction(){
-                    var name = names[Math.floor(Math.random()*names.length)];
-                    var action = actions[Math.floor(Math.random()*actions.length)];
+                RandomAction() {
+                    var name = names[Math.floor(Math.random() * names.length)];
+                    var action = actions[Math.floor(Math.random() * actions.length)];
+                    return action.replace('NAME', name);
                 }
             }
         </script>
@@ -99,7 +98,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
-                    <button id="btn" onclick="SaveNames()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span class="glyphicon glyphicon-ok"></span></button
+                    <button id="btn" onclick="LoadPersons()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span class="glyphicon glyphicon-ok"></span></button
                 </div>
             </div>
         </div>

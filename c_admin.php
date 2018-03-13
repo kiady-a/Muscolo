@@ -7,7 +7,9 @@ if($_SESSION['log'] == false){
 }
 
 $propositions = getActionSugg();
+
 $id = 0;
+
 if (filter_has_var(INPUT_POST, "validate")) {
 }
 
