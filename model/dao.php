@@ -8,6 +8,7 @@ function getAction(){
 
     return $requete;
 }
+
 function getActionSugg(){
 	$db = myPdo();
     $requete = $db->prepare("select * from actionssugg a, utilisateurs u where a.idUtilisateur=u.idUtilisateur");
@@ -15,6 +16,7 @@ function getActionSugg(){
 
     return $requete;
 }
+
 function getUser(){
 	$db = myPdo();
     $requete = $db->prepare("select * from utilisateurs");
@@ -47,6 +49,7 @@ function createUser($email, $password, $admin, $banni){
     ));
 	return $requete;
 }
+
 function verifieSiEmailExiste($emailUser){
     $db= myPdo();
     $request = $db->prepare("SELECT count(*) from utilisateurs WHERE email=:emailUser");
@@ -56,13 +59,15 @@ function verifieSiEmailExiste($emailUser){
     $requete = $request->fetch();
     return $requete[0] != 0;
 }
+
 function createActionSugg($nom, $id){
 	$db=myPdo();
-	$request = $db->prepare("INSERT INTO actionssug(nomAction, idUtilisateur)
+	$request = $db->prepare("INSERT INTO actionssugg(nomAction, idUtilisateur)
 							 VALUES (:nom,:id);");
 	$request->execute(array('nom'=>$nom, 'id'=>$id));
 	return $request;
 }
+
 function createGroup($nom, $id){
 	$db = myPdo();
 	$request = $db->prepare("INSERT INTO groupe(nom, idUtilisateur)
@@ -70,13 +75,26 @@ function createGroup($nom, $id){
 	$request->execute(array('nom'=>$nom, 'id'=>$id));
 	return $request;
 }
+
 function updateUser($email, $admin, $banni, $id){
 	$db=myPdo();
 	$request = $db->prepare("UPDATE utilisateurs SET email = :email, admin = :admin, banni = :banni where idUtilisateur = :id;");
 	$request->execute(array('email'=>$email, 'admin'=>$admin, 'banni'=>$banni, 'id'=>$id));
 	return $request;
 }
+
 function login($email, $password){
 	$users=getUserByEmail($email)->fetch();
 	return (sha256($password) == $users['password']);
+}
+
+function delActionSugg($id){
+	$db=myPdo();
+	$request = $db->prepare("DELETE FROM actionssugg WHERE idActionSugg = :id");
+	$request->execute(array('id'=>$id));
+	return $request;
+}
+
+function addActionSuggInAction(){
+
 }

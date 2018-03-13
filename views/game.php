@@ -15,17 +15,20 @@
             var tmpNames = [];
             var loaded = false;
 
-            function setTmpNames() {
-
+            function setTmpNames(idToRemove) {
+                tmpNames = FillArrayNames();
+                for (var i = 0; i < tmpNames.length; i++) {
+                    if (idToRemove === i) {
+                        tmpNames.splice(i, 1);
+                    }
+                }
+                console.log(tmpNames);
             }
-            function refreshPersons(idToRemove) {
+            function refreshPersons(idToRemove = null) {
                 var output = "<input type=\"number\" hidden value=\"" + nbPerson + "\"/>";
-                var id = "";
-                for (var i = 0; i < nbPerson; i++) {
-                    id = "person" + i;
-                    var input = document.getElementById(id);
-                    var name = (input !== null ? input.value : "");
-                    output += "<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"" + id + "\" id=\"" + id + "\" value=\"" + name + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div>";
+                setTmpNames(idToRemove);
+                for (var i = 0; i < tmpNames.length; i++) {
+                    output += "<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + tmpNames[i] + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div>";
                 }
                 output += "<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
                 document.getElementById('form').innerHTML = output;
@@ -35,10 +38,11 @@
                     if (!load) {
                         nbPerson++;
                     }
-                    refreshPersons(load);
+                    refreshPersons();
                 }
                 if (!load) {
-                    var inputFocus = nbPerson - 1;
+                    var inputFocus = "person"+ (nbPerson - 1);
+                    console.log(inputFocus);
                     document.getElementById(inputFocus).focus();
                     console.log("Load :" + load + ":" + inputFocus);
             }

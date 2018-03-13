@@ -2,10 +2,16 @@
 require_once 'model/dao.php';
 
 if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
-  if(verifieSiEmailExiste($emailUser)){
+  $erreur = null;
+  if(verifieSiEmailExiste($_POST['inputEmail'])){
     $erreur = "L'email choisi existe déjà.";
   }
-  header('Location: c_login.php?register=register');
+  else{
+    
+  }
+  /*elseif(){
+
+  }*/
 }
 elseif(filter_has_var(INPUT_POST, 'submit') && !isset($_GET['register'])){
   echo "hellow login";

@@ -41,7 +41,7 @@
                               <button type="submit" class="btn btn-default" name="validate">
                                   <span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                               </button>
-                              <input id="validate" name="validate" type="submit" class="btn btn-default" value="Sign in">
+                              <!--<input id="validate" name="validate" type="submit" class="btn btn-default" value="Sign in">-->
                               <button type="submit" class="btn btn-default" name="delete">
                                   <span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                               </button>

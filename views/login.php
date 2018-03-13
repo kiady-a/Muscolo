@@ -18,35 +18,34 @@
        <?php include 'views/nav.php'; ?>
        <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
          <div class="col-md-6 col-md-offset-3">
-           <?php if(isset($_GET['register'])){ ?>
-           <form class="form-signin" method="post" action="c_login.php?register=register">
-           <?php }
-           elseif(!isset($_GET['register'])){ ?>
-           <form class="form-signin" method="post" action="c_login.php">
-           <?php }?>
+           <form class="form-signin" method="post">
                <fieldset>
-                 <legend>Please sign in</legend>
+                 <?php if(isset($_GET['register'])){ ?>
+                 <legend>Please sign up</legend>
+               <?php }else{ ?>
+                  <legend>Please sign in</legend>
+               <?php } ?>
                <div class="form-group">
                    <label for="inputEmail" class="sr-only">Email address</label>
-                   <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+                   <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
                </div>
                <div class="form-group">
                    <label for="inputPassword" class="sr-only">Password</label>
-                   <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                   <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="">
                </div>
                <?php if($_GET['register'] == "register"){ ?>
                <div class="form-group">
                    <label for="inputPassword" class="sr-only">Repeat password</label>
-                   <input type="password" id="inputRepeatPassword" class="form-control" placeholder="Repeat password" required="">
+                   <input type="password" id="inputRepeatPassword" name="inputRepeatPassword" class="form-control" placeholder="Repeat password" required="">
                </div>
              <?php } ?>
+             <?php if(isset($erreur)){
+               echo $erreur;
+             } ?>
                <hr />
                <input id="submit" name="submit" type="submit" class="btn btn-default" value="Sign in" style="background-color: #00358F; border: none; color:#f8f8f8; font-size: 30px;">
                </fieldset>
            </form>
-           <?php if(isset($erreur)){
-             echo $erreur;
-           } ?>
 </div>
        </div>
    </div>
