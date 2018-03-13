@@ -1,5 +1,5 @@
 <?php
-//require_once 'model/fonctions.php';
+require_once 'model/dao.php';
 
 include 'views/add.php';
 ?>
