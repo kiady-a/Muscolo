@@ -18,7 +18,12 @@
        <?php include 'views/nav.php'; ?>
        <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
          <div class="col-md-6 col-md-offset-3">
+           <?php if(isset($_GET['register'])){ ?>
+           <form class="form-signin" method="post" action="c_login.php?register=register">
+           <?php }
+           elseif(!isset($_GET['register'])){ ?>
            <form class="form-signin" method="post" action="c_login.php">
+           <?php }?>
                <fieldset>
                  <legend>Please sign in</legend>
                <div class="form-group">

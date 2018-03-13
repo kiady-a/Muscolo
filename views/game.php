@@ -49,17 +49,24 @@
                     refreshPersons(id);
                 }
             }
-            function FillArray() {
+            function FillArrayNames() {
+                var ar = [];
                 for (var i = 0; i < nbPerson; i++) {
                     var id = "person" + i;
                     var input = document.getElementById(id);
                     var name = (input !== null ? input.value : "");
-                    names.push(name);
+                    ar.push(name);
                 }
-                document.getElementById("btn").innerHTML = '<span class="glyphicon glyphicon-ok"></span>';
-                document.getElementById("main").innerHTML = console.log(names);
+                return ar;
             }
-            function LoadPersons()
+            function LoadPersons() {
+                if (!loaded) {
+                    names = FillArrayNames();
+                    document.getElementById("btn").innerHTML = '<span class="glyphicon glyphicon-ok"></span>';
+                    document.getElementById("main").innerHTML = console.log(names);
+                    loaded = true;
+                }
+            }
         </script>
     </head>
     <body class='container col-md-12 col-xs-12' style="background-color: #ffa400;">
