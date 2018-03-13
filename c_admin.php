@@ -1,7 +1,11 @@
 <?php
-require_once './model/dao.php';
+require_once 'model/dao.php';
 
 $propositions = getActionSugg();
 
-include './views/admin.php';
+if (isset($_POST['validate'])) {
+echo("<meta http-equiv='refresh' content='1'>");
+}
+
+include 'views/admin.php';
 ?>

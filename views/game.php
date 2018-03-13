@@ -59,6 +59,7 @@
                 document.getElementById("btn").innerHTML = '<span class="glyphicon glyphicon-ok"></span>';
                 document.getElementById("main").innerHTML = console.log(names);
             }
+            function LoadPersons()
         </script>
     </head>
     <body class='container col-md-12 col-xs-12' style="background-color: #ffa400;">

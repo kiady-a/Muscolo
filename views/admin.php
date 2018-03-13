@@ -37,12 +37,15 @@
                           <th><?php echo $donnees['nomAction'] ?></th>
                           <td><?php echo $donnees['email'] ?></td>
                           <td>
-                            <button type="submit" class="btn btn-default" name="edit">
-                                <span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            </button>
-                            <button type="submit" class="btn btn-default" name="delete" data-toggle="modal" data-target="#myModal<?php echo $donnees['idUser'] ?>">
-                                <span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
+                            <form method="post">
+                              <button type="submit" class="btn btn-default" name="validate">
+                                  <span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                              </button>
+                              <input id="validate" name="validate" type="submit" class="btn btn-default" value="Sign in">
+                              <button type="submit" class="btn btn-default" name="delete">
+                                  <span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                              </button>
+                            </form>
                           </td>
                       </tr>
                       <?php
