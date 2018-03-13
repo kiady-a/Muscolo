@@ -7,7 +7,9 @@ if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
     $erreur = "L'email choisi existe déjà.";
   }
   else{
-    
+    if($_POST['inputPassword'] == $_POST['inputRepeatPassword']){
+
+    }
   }
   /*elseif(){
 
