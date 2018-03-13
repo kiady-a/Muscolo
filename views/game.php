@@ -58,7 +58,7 @@
                 for (var i = 0; i < nbPerson; i++) {
                     var id = "person" + i;
                     var input = document.getElementById(id);
-                    var name = (input !== null ? input.value : "");
+                    var name = (input !== null ? input.value : "ERROR");
                     ar.push(name);
                     console.log(id+": " +name);
                 }
