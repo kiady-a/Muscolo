@@ -9,49 +9,54 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript">
-            const START_NB = 4;
+            const START_NB = 3;
             var nbPerson = START_NB;
             var names = [];
+            var tmpNames = [];
+            var loaded = false;
 
-            function refreshPersons(load = false) {
+            function setTmpNames() {
+
+            }
+            function refreshPersons(idToRemove) {
                 var output = "<input type=\"number\" hidden value=\"" + nbPerson + "\"/>";
-                var closeDiv = false;
                 var id = "";
                 for (var i = 0; i < nbPerson; i++) {
-                    if (closeDiv) {
-                        output += "</div>";
-                    } else {
-                        closeDiv = true;
-                    }
                     id = "person" + i;
                     var input = document.getElementById(id);
-                    var name = (input != null ? input.value : "");
-                    output += "<div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + name + "\"/>";
+                    var name = (input !== null ? input.value : "");
+                    output += "<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"" + id + "\" id=\"" + id + "\" value=\"" + name + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div>";
                 }
                 output += "<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
                 document.getElementById('form').innerHTML = output;
-                if (!load) {
-                    document.getElementById(id).focus();
-                    console.log("Load :" + load + ":" + id);
-            }
             }
             function AddPerson(load = false) {
-                if (!load) {
-                    nbPerson++;
+                if (!loaded) {
+                    if (!load) {
+                        nbPerson++;
+                    }
+                    refreshPersons(load);
                 }
-                refreshPersons(load);
+                if (!load) {
+                    var inputFocus = nbPerson - 1;
+                    document.getElementById(inputFocus).focus();
+                    console.log("Load :" + load + ":" + inputFocus);
             }
-            function DeletePerson() {
-                nbPerson--;
-                refreshPersons();
             }
-            function LoadPersons() {
+            function DeletePerson(id) {
+                if (!loaded) {
+                    nbPerson--;
+                    refreshPersons(id);
+                }
+            }
+            function FillArray() {
                 for (var i = 0; i < nbPerson; i++) {
                     var id = "person" + i;
                     var input = document.getElementById(id);
                     var name = (input !== null ? input.value : "");
                     names.push(name);
                 }
+                document.getElementById("btn").innerHTML = '<span class="glyphicon glyphicon-ok"></span>';
                 document.getElementById("main").innerHTML = console.log(names);
             }
         </script>
@@ -69,7 +74,7 @@
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
                     <div id="main" class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px;">
                         <p>ici les choses à faire</p>
-                        <div id="form" class="col-md-4 col-md-offset-4">
+                        <div id="form" class="col-md-4 col-md-offset-4 text-center">
                             <input type="number" hidden value="0"/>
                             <input type="text" name="person0" id="person0" >
                             <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
@@ -77,7 +82,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
-                    <input id="submit" name="next" onclick="LoadPersons()" class="btn btn-primary" value="Suivant !" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;">
+                    <button id="btn" onclick="LoadPersons()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span class="glyphicon glyphicon-ok"></span></button
                 </div>
             </div>
         </div>
