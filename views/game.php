@@ -60,6 +60,7 @@
                     var input = document.getElementById(id);
                     var name = (input !== null ? input.value : "");
                     ar.push(name);
+                    console.log(id+": " +name);
                 }
                 return ar;
             }

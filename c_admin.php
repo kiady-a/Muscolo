@@ -12,4 +12,5 @@ if (filter_has_var(INPUT_POST, "delete")) {
   echo("<meta http-equiv='refresh' content='1'>");
 }
 
-include './vie
+include './views/admin.php';
+?>

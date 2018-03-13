@@ -40,6 +40,7 @@
                             <form method="post">
                               <button type="submit" class="btn btn-default" name="validate">
                                   <span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                  <?php echo $donnees['idActionSugg']?>
                               </button>
                               <!--<input id="validate" name="validate" type="submit" class="btn btn-default" value="Sign in">-->
                               <button type="submit" class="btn btn-default" name="delete">
