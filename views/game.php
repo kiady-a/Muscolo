@@ -14,64 +14,23 @@
             var names = [];
             var tmpNames = [];
             var loaded = false;
-
-            function setTmpNames(idToRemove) {
-                tmpNames = FillArrayNames();
-                for (var i = 0; i < tmpNames.length; i++) {
-                    if (idToRemove === i) {
-                        tmpNames.splice(i, 1);
-                    }
-                }
-                console.log(tmpNames);
-            }
-            function refreshPersons(idToRemove = null) {
-                var output = "<input type=\"number\" hidden value=\"" + nbPerson + "\"/>";
-                setTmpNames(idToRemove);
-                for (var i = 0; i < tmpNames.length; i++) {
-                    output += "<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + tmpNames[i] + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div>";
-                }
-                output += "<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
-                document.getElementById('form').innerHTML = output;
-            }
-            function AddPerson(load = false) {
-                if (!loaded) {
-                    refreshPersons();
-                    if (!load) {
-                        var inputFocus = "person" + (nbPerson - 1);
-                        console.log(inputFocus);
-                        document.getElementById(inputFocus).focus();
-                        console.log("Load :" + load + ":" + inputFocus);
-                    }
-                    nbPerson++;
-            }
-            }
-            function DeletePerson(id) {
-                if (!loaded) {
-                    refreshPersons(id);
-                    nbPerson--;
-                }
-            }
-            function FillArrayNames() {
-                var ar = [];
-                console.log(nbPerson)
-                for (var i = 0; i < nbPerson; i++) {
-                    var id = "person" + i;
-                    var input = document.getElementById(id);
-                    var name = (input !== null ? input.value : "ERROR");
-                    ar.push(name);
-                    console.log(id + ": " + name);
-                }
-                return ar;
-            }
-            function LoadPersons() {
-                if (!loaded) {
-                    names = FillArrayNames();
-                    document.getElementById("btn").innerHTML = '<span class="glyphicon glyphicon-ok"></span>';
-                    document.getElementById("main").innerHTML = console.log(names);
-                    loaded = true;
-                }
-            }
             //----------------
+            function AddPerson() {
+                saveTmp();
+                AddName();
+                Display();
+            }
+            function RemovePerson(id) {
+                saveTmp();
+                RemoveName(id);
+                Display();
+            }
+            function SaveNames(){
+                saveTmp();
+                //Test si au moins 2 joueurs, sans nom, etc.
+                names = tmpNames;
+            }
+            // Sauvegarder
             function saveTmp() {
                 tmpNames = FillArrayWithNames();
             }
@@ -83,14 +42,26 @@
                 }
                 return out;
             }
-            function AddName(name = ""){
+
+            // Modifier
+            function AddName(name = "") {
                 tmpNames.push(name);
             }
-            function RemoveName(id){
+            function RemoveName(id) {
                 tmpNames.splice(id, 1);
             }
-            function Afficher(){
-                
+
+            // Afficher
+            function Display(load = false) {
+                var output = "";
+                if (!load) {
+                    nbPerson = tmpNames.length;
+                }
+                for (var i = 0; i < nbPerson; i++) {
+                    output += "<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + (load ? "" : tmpNames[i]) + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div>";
+                }
+                output += "<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
+                document.getElementById('form').innerHTML = output;
             }
         </script>
     </head>
@@ -115,7 +86,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
-                    <button id="btn" onclick="LoadPersons()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span class="glyphicon glyphicon-ok"></span></button
+                    <button id="btn" onclick="SaveNames()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span class="glyphicon glyphicon-ok"></span></button
                 </div>
             </div>
         </div>
@@ -127,7 +98,7 @@
         <script src="Bootstrap/js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script type="text/javascript">AddPerson(true);</script>
+        <script type="text/javascript">Display(true);</script>
     </body>
 
 </html>
