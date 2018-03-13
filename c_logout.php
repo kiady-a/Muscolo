@@ -2,7 +2,6 @@
 /*require_once 'model/dao.php';
 
 $propositions = getActionSugg();*/
-session_start();
 //$_SESSION['login'] = false;
 $_SESSION = array();
 

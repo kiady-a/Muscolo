@@ -14,24 +14,24 @@
             var names = [];
             var tmpNames = [];
             var loaded = false;
-            //----------------
+            // Méthodes d'accès
             function AddPerson() {
-                saveTmp();
+                saveTmpNames();
                 AddName();
                 Display();
             }
             function RemovePerson(id) {
-                saveTmp();
+                saveTmpNames();
                 RemoveName(id);
                 Display();
             }
-            function SaveNames(){
-                saveTmp();
-                //Test si au moins 2 joueurs, sans nom, etc.
+            function SaveNames() {
+                saveTmpNames();
+                // TODO Test si au moins 2 joueurs, sans nom, etc.
                 names = tmpNames;
             }
-            // Sauvegarder
-            function saveTmp() {
+            // Save
+            function saveTmpNames() {
                 tmpNames = FillArrayWithNames();
             }
             function FillArrayWithNames() {
@@ -43,7 +43,7 @@
                 return out;
             }
 
-            // Modifier
+            // Edit
             function AddName(name = "") {
                 tmpNames.push(name);
             }
@@ -62,6 +62,19 @@
                 }
                 output += "<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
                 document.getElementById('form').innerHTML = output;
+            }
+
+            class Game {
+                var names;
+                var actions;
+                constructor(names, actions) {
+                    this.names = names;
+                    this.actions = actions;
+                }
+                function RandomAction(){
+                    var name = names[Math.floor(Math.random()*names.length)];
+                    var action = actions[Math.floor(Math.random()*actions.length)];
+                }
             }
         </script>
     </head>

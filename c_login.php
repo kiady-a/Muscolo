@@ -1,7 +1,9 @@
 <?php
 require_once 'model/dao.php';
 session_start();
-
+if($_SESSION['log'] == true){
+  header('Location: index.php');
+}
 if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
   $erreur = null;
   if(verifieSiEmailExiste($_POST['inputEmail'])){
@@ -15,7 +17,6 @@ if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
         0,
         0);
         $erreur = "Votre compte a bien été enregistré <a href=\"c_login.php\"> connectez-vous dès à présent ! </a>";
-        $_SESSION['log'] = true;
     }
     else{
       $erreur = "Les mots de passe ne correspondent pas";
@@ -24,7 +25,8 @@ if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
 }
 elseif(filter_has_var(INPUT_POST, 'submit') && !isset($_GET['register'])){
   if(login($_POST['inputEmail'], $_POST['inputPassword'])){
-    $erreur = "Vous êtes connecté !";
+    $_SESSION['log'] = true;
+    header('Location: index.php');
   }
   else{
     $erreur = "Les identifiants ne correspondent pas";
