@@ -32,6 +32,7 @@
               <tbody>
                   <?php
                 while ($donnees = $propositions->fetch()) {
+                  $id = $donnees['idActionSugg'];
                       ?>
                       <tr>
                           <th><?php echo $donnees['nomAction'] ?></th>
@@ -40,12 +41,11 @@
                             <form method="post">
                               <button type="submit" class="btn btn-default" name="validate">
                                   <span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                  <?php echo $donnees['idActionSugg']?>
                               </button>
-                              <!--<input id="validate" name="validate" type="submit" class="btn btn-default" value="Sign in">-->
-                              <button type="submit" class="btn btn-default" name="delete">
+                              <input id="delete" name="delete" type="submit" class="btn btn-default" value="delete">
+                              <!--<button type="submit" class="btn btn-default" name="delete">
                                   <span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                              </button>
+                              </button>-->
                             </form>
                           </td>
                       </tr>

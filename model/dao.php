@@ -41,7 +41,8 @@ function getGroup(){
 }
 
 function createUser($email, $password, $admin, $banni){
-	$db = myPdo();
+		$db = myPdo();
+		$password = sha1($password);
     $requete = $db->prepare("INSERT INTO utilisateurs(email, password, admin, banni)
 							 VALUES (:email, :password, :admin, :banni);");
     $requete->execute(array(
@@ -85,7 +86,7 @@ function updateUser($email, $admin, $banni, $id){
 
 function login($email, $password){
 	$users=getUserByEmail($email)->fetch();
-	return (sha256($password) == $users['password']);
+	return (sha1($password) == $users['password']);
 }
 
 function delActionSugg($id){

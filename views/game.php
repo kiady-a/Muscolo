@@ -35,32 +35,31 @@
             }
             function AddPerson(load = false) {
                 if (!loaded) {
-                    if (!load) {
-                        nbPerson++;
-                    }
                     refreshPersons();
-                }
-                if (!load) {
-                    var inputFocus = "person"+ (nbPerson - 1);
-                    console.log(inputFocus);
-                    document.getElementById(inputFocus).focus();
-                    console.log("Load :" + load + ":" + inputFocus);
+                    if (!load) {
+                        var inputFocus = "person" + (nbPerson - 1);
+                        console.log(inputFocus);
+                        document.getElementById(inputFocus).focus();
+                        console.log("Load :" + load + ":" + inputFocus);
+                    }
+                    nbPerson++;
             }
             }
             function DeletePerson(id) {
                 if (!loaded) {
-                    nbPerson--;
                     refreshPersons(id);
+                    nbPerson--;
                 }
             }
             function FillArrayNames() {
                 var ar = [];
+                console.log(nbPerson)
                 for (var i = 0; i < nbPerson; i++) {
                     var id = "person" + i;
                     var input = document.getElementById(id);
                     var name = (input !== null ? input.value : "ERROR");
                     ar.push(name);
-                    console.log(id+": " +name);
+                    console.log(id + ": " + name);
                 }
                 return ar;
             }
@@ -71,6 +70,27 @@
                     document.getElementById("main").innerHTML = console.log(names);
                     loaded = true;
                 }
+            }
+            //----------------
+            function saveTmp() {
+                tmpNames = FillArrayWithNames();
+            }
+            function FillArrayWithNames() {
+                var out = [];
+                for (var i = 0; i < nbPerson; i++) {
+                    var id = "person" + i;
+                    out.push(document.getElementById(id).value);
+                }
+                return out;
+            }
+            function AddName(name = ""){
+                tmpNames.push(name);
+            }
+            function RemoveName(id){
+                tmpNames.splice(id, 1);
+            }
+            function Afficher(){
+                
             }
         </script>
     </head>
