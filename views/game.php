@@ -24,14 +24,33 @@
             }
             function RemovePerson(id) {
                 saveTmpNames();
-                RemoveName(id);
-                Display();
+                if (tmpNames.length > 2) {
+                    RemoveName(id);
+                    Display();
+                }
+            }
+            function LaunchGame() {
+                if (var e = SaveNames() !== null) {
+                    
+                } else {
+
+                }
             }
             function SaveNames() {
                 saveTmpNames();
                 // TODO Check assez de joueurs etc.
+                if (typeof tmpNames === 'undefined') {
+                    return "Personne ne veut jouer ?"
+                }
+                if (tmpNames.length < 2) {
+                    return "Il faut un peu plus de joueurs pour pouvoir s'amuser !"
+                }
+                if (tmpNames.include("")) {
+                    return "Veuillez supprimer les champs inutilisés";
+                }
                 names = tmpNames;
                 game = new Game(names, actions);
+                return null;
             }
 
             // Save
@@ -42,7 +61,7 @@
                 var out = [];
                 for (var i = 0; i < nbPerson; i++) {
                     var id = "person" + i;
-                    out.push(document.getElementById(id).value);
+                    out.push(document.getElementById(id).value.trim());
                 }
                 return out;
             }
@@ -94,7 +113,7 @@
             <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; height: 600px; overflow-y : scroll">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
                     <div id="main" class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px;">
-                        <p>ici les choses à faire</p>
+                        <div class="text-center">ici les choses à faire</div>
                         <div id="form" class="col-md-4 col-md-offset-4 text-center">
                             <input type="number" hidden value="0"/>
                             <input type="text" name="person0" id="person0" >

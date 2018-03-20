@@ -18,18 +18,19 @@
        <?php include 'views/nav.php'; ?>
        <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; min-height: 600px;">
          <div class="col-md-6 col-md-offset-3">
-           <form class="form-signin">
+           <form class="form-signin" method="post">
                <fieldset>
                  <legend>Add a new action</legend>
                <div class="form-group">
                   <label for="action" class="sr-only">Action</label>
-                  <textarea class="form-control" rows="5" id="action" placeholder="Describe the new action (Write 'NAME' when you want an action for someone)" style="resize:none;"></textarea>
+                  <textarea class="form-control" rows="5" id="action" name="action" placeholder="Describe the new action (Write NAME when you want an action for someone)" style="resize:none;"></textarea>
               </div>
+              <?php echo $msg;?>
                <hr />
                <input id="submit" name="submit" type="submit" class="btn btn-default" value="Add action" style="background-color: #00358F; border: none; color:#f8f8f8; font-size: 30px;">
                </fieldset>
            </form>
-</div>
+         </div>
        </div>
    </div>
 </body>
