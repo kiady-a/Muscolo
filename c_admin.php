@@ -2,8 +2,9 @@
 require_once 'model/dao.php';
 session_start();
 
-if($_SESSION['log'] == false){
+if($_SESSION['admin'] <= 0){
   header('Location: c_login.php');
+  exit();
 }
 
 $propositions = getActionSugg();

@@ -3,6 +3,7 @@ require_once 'model/dao.php';
 session_start();
 if($_SESSION['log'] == true){
   header('Location: index.php');
+  exit();
 }
 if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
   $erreur = null;
@@ -25,10 +26,24 @@ if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
 }
 elseif(filter_has_var(INPUT_POST, 'submit') && !isset($_GET['register'])){
   if(login($_POST['inputEmail'], $_POST['inputPassword'])){
-    // getUserByEmail($email) si banni afficher erreur        
-    $_SESSION['log'] = true;
-    $_SESSION['email'] = $_POST['inputEmail'];
-    header('Location: index.php');
+    $user = getUserByEmail($_POST['inputEmail'])->fetch();
+
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['id'] = $user['idUtilisateur'];
+    $_SESSION['admin'] = $user['admin'];
+    $_SESSION['banni'] = $user['banni'];
+    if ($_SESSION['banni'] > 0) {
+      $erreur = "Vous êtes banni donc vous ne pouvez pas vous connecter ! Vous pouvez malgré tout jouer au jeu.";
+    }elseif ($_SESSION['admin'] > 0) {
+      $_SESSION['log'] = true;
+      header('Location: c_admin.php');
+      exit();
+    }else {
+      $_SESSION['log'] = true;
+      header('Location: index.php');
+      exit();
+    }
+
   }
   else{
     $erreur = "Les identifiants ne correspondent pas";
