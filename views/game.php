@@ -12,7 +12,7 @@
             const START_NB = 3;
             var nbPerson = START_NB;
             var names = [];
-            var actions = ["NAME fait des pompe", "NAME fait de la corde à sauter", "NAME fait des squats"];
+            var actions = <?= json_encode($actions) ?>;
             var tmpNames = [];
             var loaded = false;
             var game;
@@ -93,14 +93,14 @@
 
             // Display
             function DisplayForm(load = false) {
-                var output = "<div id=\"error\"></div>";
+                var output = "<div id=\"error\"></div><form method=\"POST\" id=\"HTMLFORM\">";
                 if (!load) {
                     nbPerson = tmpNames.length;
                 }
                 for (var i = 0; i < nbPerson; i++) {
-                    output += "<form method=\"GET\" id=\"HTMLFORM\"><div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + (load ? "" : tmpNames[i]) + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div></form>";
+                    output += "<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + (load ? "" : tmpNames[i]) + "\" placeholder=\"Player " + (i+1) + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div>";
                 }
-                output += "<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
+                output += "</form><button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
                 document.getElementById('form').innerHTML = output;
             }
 
@@ -143,8 +143,9 @@
                 <div class="col-md-offset-5 col-md-1 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
                     <button id="btn" onclick="LaunchGame()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span id="glyphicon-button" class="glyphicon glyphicon-ok"></span></button>
                 </div>
-                <div class="col-md-offset-4 col-md-1 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
-                    <input class="btn btn-primary" type="submit" name="save" value="Save group" form=""/>
+                <div class="col-md-offset-3 col-md-1 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
+                    <input type="text" name="name"/>
+                    <input class="btn btn-primary" type="submit" name="save" value="Save group" form="HTMLFORM"/>
                 </div>
             </div>
         </div>

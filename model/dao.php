@@ -109,3 +109,10 @@ function addActionSuggInAction($action){
 	$request->execute(array('action'=>$action));
 	return $request;
 }
+
+function banUser($email, $banni){
+	$db=myPdo();
+	$request = $db->prepare("UPDATE utilisateurs SET banni = :banni where email = :email;");
+	$request->execute(array('email'=>$email, 'banni'=>$banni));
+	return $request;
+}
