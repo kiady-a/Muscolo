@@ -17,6 +17,13 @@ function getActionSugg(){
     return $requete;
 }
 
+function getActionsuggById($id){
+	  $db = myPdo();
+		$requete = $db->prepare("select nomAction from actionssugg where idActionSugg=:id");
+		$requete->execute(array('id'=>$id));
+		return $requete->fetch()[0];
+}
+
 function getUser(){
 	$db = myPdo();
     $requete = $db->prepare("select * from utilisateurs");
@@ -96,6 +103,9 @@ function delActionSugg($id){
 	return $request;
 }
 
-function addActionSuggInAction(){
-
+function addActionSuggInAction($action){
+	$db=myPdo();
+	$request = $db->prepare("INSERT INTO action(action) VALUES (:action);");
+	$request->execute(array('action'=>$action));
+	return $request;
 }

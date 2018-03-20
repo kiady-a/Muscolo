@@ -8,15 +8,18 @@ if($_SESSION['admin'] <= 0){
 }
 
 $propositions = getActionSugg();
-
-$id = 0;
+$id = $_POST['id'];
 
 if (filter_has_var(INPUT_POST, "validate")) {
+  $action = getActionsuggById($id);
+  addActionSuggInAction($action);
+  delActionSugg($id);
+  header("Refresh:0");
 }
 
 if (filter_has_var(INPUT_POST, "delete")) {
   delActionSugg($id);
-  //echo("<meta http-equiv='refresh' content='1'>");
+  header("Refresh:0");
 }
 
 include 'views/admin.php';

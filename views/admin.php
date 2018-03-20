@@ -25,9 +25,9 @@
             <div id="main" class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; height: 600px; overflow-y: scroll">
               <table class='table table-bordered table-hover' >
                   <thead>
-                  <th>Action</th>
-                  <th>Utilisateur</th>
-                  <th>Édition</th>
+                  <th>Actions</th>
+                  <th>Users</th>
+                  <th>Options</th>
               </thead>
               <tbody>
                   <?php
@@ -39,10 +39,10 @@
                           <td><?php echo $donnees['email'] ?></td>
                           <td>
                             <form method="post">
+                              <input type="hidden" name="id" value="<?php echo $id;?>">
                               <button type="submit" class="btn btn-default" name="validate">
                                   <span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                               </button>
-                              <!--<input id="delete" name="delete" type="submit" class="btn btn-default" value="delete">-->
                               <button type="submit" class="btn btn-default" name="delete">
                                   <span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                               </button>

@@ -12,7 +12,7 @@
             const START_NB = 3;
             var nbPerson = START_NB;
             var names = [];
-            var actions = [];
+            var actions = ["NAME fait des pompe", "NAME fait de la corde à sauter", "NAME fait des squats"];
             var tmpNames = [];
             var loaded = false;
             var game;
@@ -20,33 +20,50 @@
             function AddPerson() {
                 saveTmpNames();
                 AddName();
-                Display();
+                DisplayForm();
             }
             function RemovePerson(id) {
                 saveTmpNames();
                 if (tmpNames.length > 2) {
                     RemoveName(id);
-                    Display();
+                    DisplayForm();
                 }
             }
             function LaunchGame() {
-                if (var e = SaveNames() !== null) {
-                    
+                var e = LoadNames()
+                if (e !== null) {
+                    var div = document.getElementById("error");
+                    div.classList.add("alert");
+                    div.classList.add("alert-danger");
+                    div.innerHTML = "<strong>Oups...</strong>" + e;
                 } else {
-
+                    var main = document.getElementById('main');
+                    var formHTML = main.innerHTML;
+                    main.innerHTML = "<div class=\"text-center alert alert-info\" id=\"action\">Cliquez sur le bouton pour commencer</div>" + formHTML;
+                    var form = document.getElementById('form');
+                    form.style.visibility = "hidden";
+                    var btnSpan = document.getElementById('glyphicon-button');
+                    btnSpan.classList.remove('glyphicon-ok');
+                    btnSpan.classList.add('glyphicon-arrow-right');
+                    var btn = document.getElementById('btn');
+                    btn.onclick = ShowAction;
                 }
             }
-            function SaveNames() {
+            function ShowAction() {
+                var action = game.RandomAction();
+                var div = document.getElementById('action');
+                div.innerHTML = "<strong>À réaliser : </strong>" + action;
+            }
+            function LoadNames() {
                 saveTmpNames();
-                // TODO Check assez de joueurs etc.
-                if (typeof tmpNames === 'undefined') {
-                    return "Personne ne veut jouer ?"
+                if (tmpNames.length === 0) {
+                    return "Nobody wants to play ?";
                 }
                 if (tmpNames.length < 2) {
-                    return "Il faut un peu plus de joueurs pour pouvoir s'amuser !"
+                    return "You need more players in order to play !";
                 }
-                if (tmpNames.include("")) {
-                    return "Veuillez supprimer les champs inutilisés";
+                if (tmpNames.includes("")) {
+                    return "Delete the players with no name";
                 }
                 names = tmpNames;
                 game = new Game(names, actions);
@@ -75,13 +92,13 @@
             }
 
             // Display
-            function Display(load = false) {
-                var output = "";
+            function DisplayForm(load = false) {
+                var output = "<div id=\"error\"></div>";
                 if (!load) {
                     nbPerson = tmpNames.length;
                 }
                 for (var i = 0; i < nbPerson; i++) {
-                    output += "<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + (load ? "" : tmpNames[i]) + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div>";
+                    output += "<form method=\"GET\" id=\"HTMLFORM\"><div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + (load ? "" : tmpNames[i]) + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div></form>";
                 }
                 output += "<button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
                 document.getElementById('form').innerHTML = output;
@@ -113,16 +130,21 @@
             <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; height: 600px; overflow-y : scroll">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
                     <div id="main" class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px;">
-                        <div class="text-center">ici les choses à faire</div>
                         <div id="form" class="col-md-4 col-md-offset-4 text-center">
-                            <input type="number" hidden value="0"/>
-                            <input type="text" name="person0" id="person0" >
+                            <div id="error"></div>
+                            <form method="GET" id="HTMLFORM">
+                                <input type="number" hidden value="0"/>
+                                <input type="text" name="person0" id="person0" >
+                            </form>
                             <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
-                    <button id="btn" onclick="SaveNames()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span class="glyphicon glyphicon-ok"></span></button
+                <div class="col-md-offset-5 col-md-1 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
+                    <button id="btn" onclick="LaunchGame()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span id="glyphicon-button" class="glyphicon glyphicon-ok"></span></button>
+                </div>
+                <div class="col-md-offset-4 col-md-1 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
+                    <input class="btn btn-primary" type="submit" name="save" value="Save group" form=""/>
                 </div>
             </div>
         </div>
@@ -131,10 +153,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-        <script src="Bootstrap/js/bootstrap.min.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script type="text/javascript">Display(true);</script>
+        <script type="text/javascript">DisplayForm(true);</script>
     </body>
 
 </html>
