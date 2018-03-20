@@ -16,7 +16,10 @@ session_start();
             <ul class="nav navbar-nav">
                 <li><a href="index.php" style="color : #009ffd; text-align:center;" onmouseover="this.style.color = '#f8f8f8'; this.style.background = '#009ffd';" onmouseout="this.style.color = '#009ffd'; this.style.background = 'none'">Home</a></li>
                 <?php  if($_SESSION['log'] == true){
-                ?>
+                  if ($_SESSION['admin'] > 0) { ?>
+                    <li><a href="c_admin.php" style="color : #009ffd; text-align:center;" onmouseover="this.style.color = '#f8f8f8'; this.style.background = '#009ffd';" onmouseout="this.style.color = '#009ffd'; this.style.background = 'none'">Admin</a></li>
+                <?php  }
+                 ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="c_account.php" style="color : #009ffd; text-align:center;" onmouseover="this.style.color = '#f8f8f8'; this.style.background = '#009ffd';" onmouseout="this.style.color = '#009ffd'; this.style.background = 'none'">My account</a></li>

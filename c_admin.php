@@ -9,6 +9,7 @@ if($_SESSION['admin'] <= 0){
 
 $propositions = getActionSugg();
 $id = $_POST['id'];
+$email = $_POST['email'];
 
 if (filter_has_var(INPUT_POST, "validate")) {
   $action = getActionsuggById($id);
@@ -18,6 +19,12 @@ if (filter_has_var(INPUT_POST, "validate")) {
 }
 
 if (filter_has_var(INPUT_POST, "delete")) {
+  delActionSugg($id);
+  header("Refresh:0");
+}
+
+if (filter_has_var(INPUT_POST, "banUser")) {
+  banUser($email, 1);
   delActionSugg($id);
   header("Refresh:0");
 }
