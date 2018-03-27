@@ -3,6 +3,7 @@
 
 $propositions = getActionSugg();*/
 //$_SESSION['login'] = false;
+session_start();
 $_SESSION = array();
 
 // Si vous voulez détruire complètement la session, effacez également
@@ -21,4 +22,4 @@ session_destroy();
 
 header('Location: c_login.php');
 exit();
-?>
+

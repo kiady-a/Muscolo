@@ -8,7 +8,7 @@ if($_SESSION['log'] == true){
 if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
   $erreur = null;
   if(verifieSiEmailExiste($_POST['inputEmail'])){
-    $erreur = "L'email choisi existe déjà.";
+    $erreur = "This email already exist !";
   }
   else{
     if($_POST['inputPassword'] == $_POST['inputRepeatPassword']){
@@ -17,10 +17,10 @@ if(filter_has_var(INPUT_POST, 'submit') && isset($_GET['register'])){
         trim(filter_input(INPUT_POST,'inputPassword',FILTER_SANITIZE_STRING)),
         0,
         0);
-        $erreur = "Votre compte a bien été enregistré <a href=\"c_login.php\"> connectez-vous dès à présent ! </a>";
+        $erreur = "Your account have been registered successfuly <a href=\"c_login.php\"> You can login ! </a>";
     }
     else{
-      $erreur = "Les mots de passe ne correspondent pas";
+      $erreur = "The passwords don't match !";
     }
   }
 }
@@ -33,7 +33,7 @@ elseif(filter_has_var(INPUT_POST, 'submit') && !isset($_GET['register'])){
     $_SESSION['admin'] = $user['admin'];
     $_SESSION['banni'] = $user['banni'];
     if ($_SESSION['banni'] > 0) {
-      $erreur = "Vous êtes banni donc vous ne pouvez pas vous connecter ! Vous pouvez malgré tout jouer au jeu.";
+      $erreur = "Your account is banned :( you cannot connect but you still can play !";
     }elseif ($_SESSION['admin'] > 0) {
       $_SESSION['log'] = true;
       header('Location: c_admin.php');
@@ -46,7 +46,7 @@ elseif(filter_has_var(INPUT_POST, 'submit') && !isset($_GET['register'])){
 
   }
   else{
-    $erreur = "Les identifiants ne correspondent pas";
+    $erreur = "Your email or your password is wrong !";
   }
 }
 

@@ -15,16 +15,19 @@ if (filter_has_var(INPUT_POST, "validate")) {
   $action = getActionsuggById($id);
   addActionSuggInAction($action);
   delActionSugg($id);
+  $_SESSION["msg"] = "A suggestion has been accepted !";
   header("Refresh:0");
 }
 
 if (filter_has_var(INPUT_POST, "delete")) {
   delActionSugg($id);
+  $_SESSION["msg"] = "A suggestion has been refused !";
   header("Refresh:0");
 }
 
 if (filter_has_var(INPUT_POST, "banUser")) {
   banUser($email, 1);
+  $_SESSION["msg"] = "A user has been banned !";
   delActionSugg($id);
   header("Refresh:0");
 }

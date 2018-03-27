@@ -12,9 +12,9 @@ if (filter_has_var(INPUT_POST, 'submit')) {
   $sugg = trim(filter_input(INPUT_POST,'action',FILTER_SANITIZE_STRING));
   if (!empty($sugg)) {
     createActionSugg($sugg, $_SESSION['id']);
-    $msg = "Votre proposition a bien été envoyée.";
+    $msg = "Your suggestion has been sent";
   }else{
-    $msg = "Votre proposition ne peut pas être vide !";
+    $msg = "Your suggestion cannot be empty !";
   }
 }
 

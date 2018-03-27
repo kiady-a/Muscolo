@@ -43,13 +43,13 @@
                               <input type="hidden" name="id" value="<?php echo $id;?>">
                               <input type="hidden" name="email" value="<?php echo $email;?>">
                               <button type="submit" class="btn btn-default" name="validate">
-                                  <span style="color: green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                  <span style="color: green;" class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
                               </button>
                               <button type="submit" class="btn btn-default" name="delete">
-                                  <span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                  <span style="color: red;" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                               </button>
                               <button type="submit" class="btn btn-default" name="banUser">
-                                  <span style="color: red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                  <span style="color: red;" class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
                               </button>
                             </form>
                           </td>
@@ -60,6 +60,7 @@
                   ?>
               </tbody>
           </table>
+          <?php echo $_SESSION['msg']; ?>
             </div>
         </div>
         <!-- Bootstrap core JavaScript

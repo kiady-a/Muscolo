@@ -13,7 +13,7 @@
             var nbPerson = START_NB;
             var names = [];
             var actions = <?= json_encode($actions) ?>;
-            var tmpNames = [];
+            var tmpNames = <?= ($isGroup ? json_encode(explode(',', $participants)) : "[]") ?>;
             var loaded = false;
             var game;
             //----------------
@@ -24,10 +24,8 @@
             }
             function RemovePerson(id) {
                 saveTmpNames();
-                if (tmpNames.length > 2) {
-                    RemoveName(id);
-                    DisplayForm();
-                }
+                RemoveName(id);
+                DisplayForm();
             }
             function LaunchGame() {
                 var e = LoadNames()
@@ -35,13 +33,17 @@
                     var div = document.getElementById("error");
                     div.classList.add("alert");
                     div.classList.add("alert-danger");
-                    div.innerHTML = "<strong>Oups...</strong>" + e;
+                    div.innerHTML = "<strong>Oops...</strong>" + e;
                 } else {
+                    saveTmpNames();
+                    DisplayForm();
                     var main = document.getElementById('main');
                     var formHTML = main.innerHTML;
-                    main.innerHTML = "<div class=\"text-center alert alert-info\" id=\"action\">Cliquez sur le bouton pour commencer</div>" + formHTML;
+                    console.log(formHTML);
+                    main.innerHTML = "<div class=\"text-center alert alert-info\" id=\"action\" style=\"height:100%; font-size: 2em;\">Click on the button to start</div>" + formHTML;
                     var form = document.getElementById('form');
                     form.style.visibility = "hidden";
+                    form.style.position = "absolute";
                     var btnSpan = document.getElementById('glyphicon-button');
                     btnSpan.classList.remove('glyphicon-ok');
                     btnSpan.classList.add('glyphicon-arrow-right');
@@ -52,9 +54,10 @@
             function ShowAction() {
                 var action = game.RandomAction();
                 var div = document.getElementById('action');
-                div.innerHTML = "<strong>À réaliser : </strong>" + action;
+                div.innerHTML = "<strong>To do : </strong>" + action;
             }
             function LoadNames() {
+
                 saveTmpNames();
                 if (tmpNames.length === 0) {
                     return "Nobody wants to play ?";
@@ -98,7 +101,7 @@
                     nbPerson = tmpNames.length;
                 }
                 for (var i = 0; i < nbPerson; i++) {
-                    output += "<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + (load ? "" : tmpNames[i]) + "\" placeholder=\"Player " + (i+1) + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div>";
+                    output += "<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" name=\"person" + i + "\" id=\"person" + i + "\" value=\"" + (load ? "" : tmpNames[i]) + "\" placeholder=\"Player " + (i + 1) + "\"/><button onclick=\"RemovePerson(" + i + ")\"><span class=\"glyphicon glyphicon-remove\"></span></button></div></div>";
                 }
                 output += "</form><button onclick=\"AddPerson()\"><span class=\"glyphicon glyphicon-plus\"></span></button></div>";
                 document.getElementById('form').innerHTML = output;
@@ -111,30 +114,37 @@
                     this.actions = actions;
                 }
                 RandomAction() {
-                    var name = names[Math.floor(Math.random() * names.length)];
                     var action = actions[Math.floor(Math.random() * actions.length)];
-                    return action.replace('NAME', name);
+                    var tmpNames = names.slice(0);
+                    while (action.indexOf('NAME') !== -1) {
+                        console.log(tmpNames);
+                        var name = tmpNames[Math.floor(Math.random() * tmpNames.length)];
+                        console.log(name);
+                        action = action.replace('NAME', name);
+                        tmpNames.splice(tmpNames.indexOf(name), 1);
+                        console.log(tmpNames)
+                        console.log("------");
+                    }
+                    return action;
                 }
             }
         </script>
     </head>
-    <body class='container col-md-12 col-xs-12' style="background-color: #ffa400;">
+    <body class='container' style="background-color: #ffa400;">
         <noscript><p>Please enable javascript for this site to work properly</p><style>
             div {
                 display: none;
             }
         </style></noscript>
-        <div class="container">
+        <div>
             <?php include 'views/nav.php'; ?>
-
             <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; height: 600px; overflow-y : scroll">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
                     <div id="main" class="col-md-12 col-xs-12" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px;">
                         <div id="form" class="col-md-4 col-md-offset-4 text-center">
                             <div id="error"></div>
                             <form method="GET" id="HTMLFORM">
-                                <input type="number" hidden value="0"/>
-                                <input type="text" name="person0" id="person0" >
+                                <input type="text" name="person0" id="person0" disabled>
                             </form>
                             <button onclick="AddPerson()"><span class="glyphicon glyphicon-plus"></span></button>
                         </div>
@@ -143,10 +153,36 @@
                 <div class="col-md-offset-5 col-md-1 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
                     <button id="btn" onclick="LaunchGame()" class="btn btn-primary" style="background-color: #00358F; border: none; width:200px; height: 50px; font-size: 30px;"><span id="glyphicon-button" class="glyphicon glyphicon-ok"></span></button>
                 </div>
-                <div class="col-md-offset-3 col-md-1 col-xs-12" style="color: #fefcfb; padding:10px; text-align: center;">
-                    <input type="text" name="name"/>
-                    <input class="btn btn-primary" type="submit" name="save" value="Save group" form="HTMLFORM"/>
-                </div>
+                <?php if ($_SESSION['log']) { ?>
+                    <div class="col-md-offset-3 col-md-1 col-xs-12" style="color: #009ffd; padding:10px; text-align: center;">
+                        <input type="text" name="name" form="HTMLFORM"/>
+                        <input class="btn btn-primary" type="submit" name="save" value="Save group" form="HTMLFORM"/>
+                        <?php echo $msgError; ?>
+                    </div>
+                <?php } else { ?>
+                    <div class="col-md-offset-3 col-md-1 col-xs-12" style="color: #009ffd; padding:10px; text-align: center;">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Save group
+                        </button>
+                    </div>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
         <!-- Bootstrap core JavaScript
@@ -154,7 +190,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-        <script type="text/javascript">DisplayForm(true);</script>
+        <script type="text/javascript">DisplayForm(<?= $isGroup ? "" : "true" ?>);</script>
     </body>
 
 </html>

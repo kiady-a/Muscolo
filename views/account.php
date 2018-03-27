@@ -41,94 +41,44 @@
             <div class="col-md-12 col-xs-12" style="background-color: #f8f8f8; color: #009ffd; padding:10px; border-radius:5px; height: 600px; overflow-y: scroll">
                 <div class="col-md-12 col-xs-12" style="padding:10px;">
                   <legend>My Groups</legend>
-                  <a href="#" onmouseover="this.style.background='#ffa400';this.style.color='#ffa400';" onmouseout="this.style.background='';this.style.color='';">
+
+                  <?php
+                  if(!isNotEmptyGroup($_SESSION['id'])){
+
+                    echo "You do not have a group yet. Create one if you want to use it again !";
+                  }
+                      while ($donnees = $myGroups->fetch()) {
+
+                        $name = explode(',', $donnees['participants']);
+                  ?>
+                  <a href="index.php?participants=<?php echo $donnees['participants'];?>" onmouseover="this.style.background='#ffa400';this.style.color='#ffa400';" onmouseout="this.style.background='';this.style.color='';">
                     <div class="col-md-3 col-xs-10" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center; margin:40px;">
                       <table class="table table-dark">
                         <thead>
                           <tr>
-                            <th scope="col">DreamTeam</th>
+                            <th scope="col"><?php echo $donnees['nom'];?>
+                              <a href="c_deleteGroup.php?id=<?php echo $donnees['idGroupe'] ?>">
+                                <button type="button" class="btn btn-default btn-md pull-right">
+                                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                  </button>
+                              </a>
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>Christiano</td>
-                          </tr>
-                          <tr>
-                            <td>Simon</td>
-                          </tr>
-                          <tr>
-                            <td>Kiady</td>
-                          </tr>
+                          <?php
+                          foreach ($name as $value) { ?>
+                            <tr>
+                              <td><?php echo $value; ?></td>
+                            </tr>
+                          <?php } ?>
                         </tbody>
                       </table>
-                </div>
-              </a>
-              <a href="#" onmouseover="this.style.background='#ffa400';this.style.color='#ffa400';" onmouseout="this.style.background='';this.style.color='';">
-                <div class="col-md-3 col-xs-10" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center; margin:40px;">
-                  <table class="table table-dark">
-                    <thead>
-                      <tr>
-                        <th scope="col">Apple 4ever</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Constantin</td>
-                      </tr>
-                      <tr>
-                        <td>Ottavio</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-          </a>
-          <a href="#" onmouseover="this.style.background='#ffa400';this.style.color='#ffa400';" onmouseout="this.style.background='';this.style.color='';">
-            <div class="col-md-3 col-xs-10" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center; margin:40px;">
-              <table class="table table-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">Kawaii</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Billy</td>
-                  </tr>
-                  <tr>
-                    <td>Loic</td>
-                  </tr>
-                  <tr>
-                    <td>Christiano</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-      </a>
-          <a href="#" onmouseover="this.style.background='#ffa400';this.style.color='#ffa400';" onmouseout="this.style.background='';this.style.color='';">
-        <div class="col-md-3 col-xs-10" style="padding:10px; border-radius:5px; border: solid 1px; min-height: 400px; text-align: center; margin:40px;">
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">420</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Safia</td>
-              </tr>
-              <tr>
-                <td>Lucas</td>
-              </tr>
-              <tr>
-                <td>Thibaut</td>
-              </tr>
-              <tr>
-                <td>Romain</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </a>
+                    </div>
+                  </a>
+                  <?php
+                }
+                  ?>
       </div>
     </div>
         <!-- Bootstrap core JavaScript
